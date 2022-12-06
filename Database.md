@@ -14,24 +14,35 @@
     </details>
 2. What is Isolation Levels
     <details><summary>Answer</summary>
-    Database isolation refers to the ability of a database to allow a transaction to execute as if there are no other concurrently running transactions (even though in reality there can be a large number of concurrently running transactions). The overarching goal is to prevent reads and writes of temporary, aborted, or otherwise incorrect data written by concurrent transactions.
-
-    The four levels of isolation are:
-    - Read Uncommitted: A transaction can read data that has been modified by other transactions but not yet committed.
-    - Read Committed: A transaction can only read data that has been committed by other transactions.
-    - Repeatable Read: A transaction can only read data that has been committed by other transactions. It also prevents other transactions from modifying the data that has already been read by the current transaction.
-    - Serializable: A transaction can only read data that has been committed by other transactions. It also prevents other transactions from modifying the data that has already been read by the current transaction. It also prevents other transactions from inserting new rows that match the WHERE clause of a query that has already been executed by the current transaction.
+      Database isolation refers to the ability of a database to allow a transaction to execute as if there are no other concurrently running transactions (even though in reality there can be a large number of concurrently running transactions). The overarching goal is to prevent reads and writes of temporary, aborted, or otherwise incorrect data written by concurrent transactions.
+    
+      The four levels of isolation are:
+      - Read Uncommitted: A transaction can read data that has been modified by other transactions but not yet committed.
+      - Read Committed: A transaction can only read data that has been committed by other transactions.
+      - Repeatable Read: A transaction can only read data that has been committed by other transactions. It also prevents other transactions from modifying the data that has already been read by the current transaction.
+      - Serializable: A transaction can only read data that has been committed by other transactions. It also prevents other transactions from modifying the data that has already been read by the current transaction. It also prevents other transactions from inserting new rows that match the WHERE clause of a query that has already been executed by the current transaction.
     </details>
+
 3. Use mongodb or mysql? Why?
-5. Why do databases treat null as a so special case? For example, why does SELECT * FROM table WHERE field = null not match records with null field in SQL?
-6. Lazy Loading
-7. How would you find the most expensive queries in an application?
-8. In your opinion, is it always needed to use database normalization? When is it advisable to use demoralized databases?
-9.  What do you understand by Data Redundancy?
+    <details><summary>Answer</summary>
+      Actually we can change this question to compare with NoSQL and RDBMS.
+      RDBMS is good at ACID if your business need transaction, and you want it to have high performance, you can use RDBMS.
+      NoSQL is good at scalability if your business model is not structured will growth fast and become really dynamic. Choose NoSQL is good for you.
+
+    </details>
+4. Why do databases treat null as a so special case? For example, why does `SELECT * FROM table WHERE field = null` not match records with null field in SQL?
+    <details><summary>Answer</summary>
+      NULL means no value, not `zero` or `empty string`. And it have no type in SQL.
+      Not `VARCHAR` or `DATE` or others. I will not to equal anything neither itself.
+      If you want to check if a field is null, you should use `IS NULL` or `IS NOT NULL` instead of `=` or `<>`. 
+5. Lazy Loading
+6. How would you find the most expensive queries in an application?
+7. In your opinion, is it always needed to use database normalization? When is it advisable to use demoralized databases?
+8.  What do you understand by Data Redundancy?
     <details><summary> Ans </summary>      
       Duplication of data in the database is known as data redundancy. As a result of data redundancy, duplicated data is present at multiple locations, hence it leads to wastage of the storage space and the integrity of the database is destroyed.
     </details>
-10. What do you understand by Data Independence? What are its two types?
+9.  What do you understand by Data Independence? What are its two types?
     <details><summary> Ans </summary>
       Data Independence refers to the ability to modify the schema definition in one level in such a way that it does not affect the schema definition in the next higher level.
 
@@ -41,29 +52,29 @@
       Logical Data Independence: It modifies the schema at the conceptual level without affecting or causing changes in the schema at the view level.
     </details>
 
-11. Define the relationship between ‘View’ and ‘Data Independence’.
+10. Define the relationship between ‘View’ and ‘Data Independence’.
     <details><summary> Ans </summary>
       Answer: View is a virtual table that does not have its data on its own rather the data is defined from one or more underlying base tables.
       Views account for logical data independence as the growth and restructuring of base tables are not reflected in views. 
     </details>
 
-12. What are the advantages and disadvantages of views in the database?
-13. What is transaction?
-14. Define Database Lock and its types.
-15. Define Phantom deadlock.
-16. What do you understand by B-Trees?
-17. How would you find the most expensive queries in an application?
-18. What are some common issues with ORMs?
-19. What is phantom read?
-20. 讀未提交(Read Uncommitted) 讀已提交(Read Committed) 可重複讀(Repeatable Read) 可序列化(Serializable)
-21. Write Skew? Postgres的可重複讀是能解決更新丟失的，但同樣無法解決寫入偏斜。
-22. Race condition
+11. What are the advantages and disadvantages of views in the database?
+12. What is transaction?
+13. Define Database Lock and its types.
+14. Define Phantom deadlock.
+15. What do you understand by B-Trees?
+16. How would you find the most expensive queries in an application?
+17. What are some common issues with ORMs?
+18. What is phantom read?
+19. 讀未提交(Read Uncommitted) 讀已提交(Read Committed) 可重複讀(Repeatable Read) 可序列化(Serializable)
+20. Write Skew? Postgres的可重複讀是能解決更新丟失的，但同樣無法解決寫入偏斜。
+21. Race condition
     <details><summary>Answer</summary>
     - Atomic update
     - Transaction lock
     - Version control
     </details>
-23. Lost Updates in Mysql, Postgres
+22. Lost Updates in Mysql, Postgres
 
 ## RDBMS
 1. Explain count(*), count(1), count(column_name) in SQL?
