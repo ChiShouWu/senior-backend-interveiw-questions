@@ -1,4 +1,5 @@
 # Behavior Questions
+- [Behavior Questions](#behavior-questions)
   - [Personality](#personality)
   - [Team Work](#team-work)
   - [Career Plan](#career-plan)
@@ -25,14 +26,24 @@
 5.  Why you leave your last job?
 ---
 ## Jobs Experience
-2. How do you approach setting professional goals?
-3. How do you prevent technical debt?3
-4. Describe a situation where you successfully convinced others of your ideas
-5. What has been your role in development projects in the past?
-6.  How would you describe the software lifecycle at your most recent position? What did you enjoy the most? What would have you liked to change?
-7.  Describe your greatest coding strength.
-8.  Describe your best project. What made it successful? Were there any challenges?
-9.  What is the largest web application you have ever worked on? - and what coding were you responsible for?
+1. How do you approach setting professional goals?
+    <details><summary>Answer</summary>
+    I image myself in the future, and I think about what I want to do in the future. Then I set goals to achieve my dream.
+    </details>
+2. How do you prevent technical debt?
+    <details><summary>Answer</summary>
+    </details>
+3. Describe a situation where you successfully convinced others of your ideas
+4. What has been your role in development projects in the past?
+    <details><summary>Answer</summary>
+      Support and discuss system design and database schema design with tech lead. Build the code base for co-worker and write the test code. Support frontend to connect our API services.
+    </details>
+5.  How would you describe the software lifecycle at your most recent position? What did you enjoy the most? What would have you liked to change?
+6.  Describe your greatest coding strength.
+
+7.  Describe your best project. What made it successful? Were there any challenges?
+8.  What is the largest web application you have ever worked on? - and what coding were you responsible for?
+9.  What problem did you solve that had a significant impact on the company?
 
 
 

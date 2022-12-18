@@ -35,46 +35,100 @@
       NULL means no value, not `zero` or `empty string`. And it have no type in SQL.
       Not `VARCHAR` or `DATE` or others. I will not to equal anything neither itself.
       If you want to check if a field is null, you should use `IS NULL` or `IS NOT NULL` instead of `=` or `<>`. 
-5. Lazy Loading
-6. How would you find the most expensive queries in an application?
-7. In your opinion, is it always needed to use database normalization? When is it advisable to use demoralized databases?
-8.  What do you understand by Data Redundancy?
+    </details>
+5. How would you find the most expensive queries in an application?
+    <details><summary>Answer</summary>
+      If you use SQL server , You can query `dm_exec_query_stats` to get the most expensive query.
+      If you use Postgres, you can use an extension module `pg_stat_statements` to get the most expensive query.
+      If you use MySQL, you need to capture this information from a log file, and not via a query. `See slow query log`
+
+      Than with `EXPLAIN` you can see the query plan, and you can see the cost of each step. The cost is the number of rows that the step will process. So you can find the most expensive query by the cost of each step. 
+    </details>
+6. In your opinion, is it always needed to use database normalization? When is it advisable to use demoralized databases?
+    <details><summary>Answer</summary>
+      Normalization is a process of organizing data in a database. It is used to minimize data redundancy and improve data integrity. It is a technique to reduce the size of the database and increase the speed of the database.
+      It is advisable to use demoralized databases when you need to improve the performance of the database cause by lots of join operation.
+      `Normalize until it hurts, denormalize until it works.`
+    </details>
+7.  What do you understand by Data Redundancy?
     <details><summary> Ans </summary>      
       Duplication of data in the database is known as data redundancy. As a result of data redundancy, duplicated data is present at multiple locations, hence it leads to wastage of the storage space and the integrity of the database is destroyed.
     </details>
-9.  What do you understand by Data Independence? What are its two types?
+8.  What do you understand by Data Independence? What are its two types?
     <details><summary> Ans </summary>
       Data Independence refers to the ability to modify the schema definition in one level in such a way that it does not affect the schema definition in the next higher level.
 
       The 2 types of Data Independence are:
 
-      Physical Data Independence: It modifies the schema at the physical level without affecting the schema at the conceptual level.
-      Logical Data Independence: It modifies the schema at the conceptual level without affecting or causing changes in the schema at the view level.
+      - Physical Data Independence: It modifies the schema at the physical level without affecting the schema at the conceptual level. User application don't know how the data is stored in the disk, it is own by the database system.
+      - Logical Data Independence: It modifies the schema at the conceptual level without affecting or causing changes in the schema at the view level. User application won't be affect by database schema change.
     </details>
 
-10. Define the relationship between ‘View’ and ‘Data Independence’.
+9.  Define the relationship between `View’`and `Data Independence`.
     <details><summary> Ans </summary>
-      Answer: View is a virtual table that does not have its data on its own rather the data is defined from one or more underlying base tables.
+      View is a virtual table that does not have its data on its own rather the data is defined from one or more underlying base tables.
       Views account for logical data independence as the growth and restructuring of base tables are not reflected in views. 
     </details>
+10. What are the advantages and disadvantages of views in the database?
+    <details><summary> Ans </summary>
+      Advantages:
+        
+        1. Views don't store data in a physical location.
 
-11. What are the advantages and disadvantages of views in the database?
-12. What is transaction?
-13. Define Database Lock and its types.
-14. Define Phantom deadlock.
-15. What do you understand by B-Trees?
-16. How would you find the most expensive queries in an application?
-17. What are some common issues with ORMs?
-18. What is phantom read?
-19. 讀未提交(Read Uncommitted) 讀已提交(Read Committed) 可重複讀(Repeatable Read) 可序列化(Serializable)
-20. Write Skew? Postgres的可重複讀是能解決更新丟失的，但同樣無法解決寫入偏斜。
-21. Race condition
+        2. The view can be used to hide some of the columns from the table.
+
+        3. Views can provide Access Restriction, since data insertion, update and deletion is not possible with the view.
+
+      Disadvantages:
+        
+        4. When a table is dropped, associated view become irrelevant.
+        
+        5. Since the view is created when a query requesting data from view is triggered, its a bit slow.
+        
+        6. When views are created for large tables, it occupies more memory.
+    </summary>
+11. What is transaction?
+    <details><summary> Ans</summary>
+    Transaction is a logic unit in database, means a group of data read & write actions. It will be two results committed(all success) or rollback(all cancel).
+
+    It is common to see in transfer money, you will transfer money from A to B, if A's balance is not enough, you will cancel the transaction, and the money will not transfer to B. To prevent data inconsistency, we need to use transaction.
+    </details>
+12. Define Database Lock and its types.
+    <details><summary> Ans</summary>
+    Database lock is a mechanism to prevent data inconsistency. It is used to prevent other transaction from accessing the data that is being accessed by the current transaction.
+    - Exclusive Lock: Only one transaction can hold an exclusive lock on a row at a time. Others can't read or write, Until the transaction releases the lock.
+    - Shared Lock: Multiple transactions can hold a shared lock on a row at a time. Others can read, but can't write, Until the transaction releases the lock. And the same time exclusive lock can't be acquired.
+    - Range Lock: It is used to lock a range of rows. Also for InnoDB, it is related to `isolation level`. When isolation level is serializable, it will lock W/R to the range of rows. If isolation level is repeatable read, it will lock write to the range of rows.
+    </details>
+13. Define Phantom deadlock.
+    <details><summary> Ans</summary>
+    Phantom deadlock is a deadlock in a distributed DBMS. It is caused by the following conditions:
+     - One process is waiting for resource which is being held by another process.
+     - When second process release the resource and here comes a delay so no one knows resource is released.
+    </details>
+14. What do you understand by B-Trees?
+    <details><summary> Ans</summary>
+      B-Trees are a type of self-balancing tree data structure that keeps data sorted and allows searches, sequential access, insertions, and deletions in logarithmic time. B-Trees are a generalization of a binary search tree in that a node can have more than two children.
+    </details>
+15. What are some common issues with ORMs?
+    <details><summary> Ans</summary>
+      Props: 
+        - Make query sentence more readable. Easy to maintain
+        - Prevent SQL injection
+        - Models use OOP, which means you an extend and inherit from Models.
+      Cons:
+        - When you need to do complex query, you need to write raw SQL. ORM may have performance issue.
+    </details>
+16. What is phantom read?
+17. 讀未提交(Read Uncommitted) 讀已提交(Read Committed) 可重複讀(Repeatable Read) 可序列化(Serializable)
+18. Write Skew? Postgres的可重複讀是能解決更新丟失的，但同樣無法解決寫入偏斜。
+19. Race condition
     <details><summary>Answer</summary>
     - Atomic update
     - Transaction lock
     - Version control
     </details>
-22. Lost Updates in Mysql, Postgres
+20. Lost Updates in Mysql, Postgres
 
 ## RDBMS
 1. Explain count(*), count(1), count(column_name) in SQL?
