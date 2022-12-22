@@ -75,6 +75,7 @@
     - AP: Means that the system will continue to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes. The response may not be the most recent write, but it will be a reasonable response.
     - CA: Means user will get response and write data, the partition will not work. But since we are discussing distributed system, the partition will happen, so CA is not a good choice.
     </details>
+
 ## References
 - [設計秒殺系統](https://mp.weixin.qq.com/s/kWqgzMw4qKek7QUfkDSwNg)
 - [異地多活](https://mp.weixin.qq.com/s/T6mMDdtTfBuIiEowCpqu6Q)

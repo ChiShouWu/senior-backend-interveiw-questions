@@ -33,7 +33,7 @@
 4. Why do databases treat null as a so special case? For example, why does `SELECT * FROM table WHERE field = null` not match records with null field in SQL?
     <details><summary>Answer</summary>
       NULL means no value, not `zero` or `empty string`. And it have no type in SQL.
-      Not `VARCHAR` or `DATE` or others. I will not to equal anything neither itself.
+      Not `VARCHAR` or `DATE` or others. It will not to equal anything neither itself.
       If you want to check if a field is null, you should use `IS NULL` or `IS NOT NULL` instead of `=` or `<>`. 
     </details>
 5. How would you find the most expensive queries in an application?
@@ -97,7 +97,9 @@
     <details><summary> Ans</summary>
     Database lock is a mechanism to prevent data inconsistency. It is used to prevent other transaction from accessing the data that is being accessed by the current transaction.
     - Exclusive Lock: Only one transaction can hold an exclusive lock on a row at a time. Others can't read or write, Until the transaction releases the lock.
+  
     - Shared Lock: Multiple transactions can hold a shared lock on a row at a time. Others can read, but can't write, Until the transaction releases the lock. And the same time exclusive lock can't be acquired.
+
     - Range Lock: It is used to lock a range of rows. Also for InnoDB, it is related to `isolation level`. When isolation level is serializable, it will lock W/R to the range of rows. If isolation level is repeatable read, it will lock write to the range of rows.
     </details>
 13. Define Phantom deadlock.
@@ -106,11 +108,15 @@
      - One process is waiting for resource which is being held by another process.
      - When second process release the resource and here comes a delay so no one knows resource is released.
     </details>
-14. What do you understand by B-Trees?
+14. What is lost update?
+    <details><summary> Ans</summary>
+    Lost update is a phenomenon that two transactions update the same data, and the last transaction will overwrite the first transaction's update.
+    </details>
+15. What do you understand by B-Trees?
     <details><summary> Ans</summary>
       B-Trees are a type of self-balancing tree data structure that keeps data sorted and allows searches, sequential access, insertions, and deletions in logarithmic time. B-Trees are a generalization of a binary search tree in that a node can have more than two children.
     </details>
-15. What are some common issues with ORMs?
+16. What are some common issues with ORMs?
     <details><summary> Ans</summary>
       Props: 
         - Make query sentence more readable. Easy to maintain
@@ -119,16 +125,39 @@
       Cons:
         - When you need to do complex query, you need to write raw SQL. ORM may have performance issue.
     </details>
-16. What is phantom read?
-17. 讀未提交(Read Uncommitted) 讀已提交(Read Committed) 可重複讀(Repeatable Read) 可序列化(Serializable)
-18. Write Skew? Postgres的可重複讀是能解決更新丟失的，但同樣無法解決寫入偏斜。
-19. Race condition
+
+17. What is phantom read?
+    <details><summary> Ans</summary>
+      Phantom read is a phenomenon two transactions read same data but get different rows.
+    </details>
+
+18. What is dirty read?
+    <details><summary> Ans</summary>
+      Dirty read is a phenomenon that occurs when a transaction reads a data item that has been modified by another uncommitted transaction.
+
+      For example: Transaction A reads a data item, Transaction B modifies the data item, Transaction A reads the data item again, Transaction B update the data item, Transaction A reads the data item again. Transaction A will get the data item that is modified by Transaction B, but not committed.
+    </details>
+
+19. What is non-repeatable read?
+    <details><summary> Ans</summary>
+      Non-repeatable read is a phenomenon that occurs when a transaction re-reads a data item that it has previously read, and finds that the data item's value has been modified by another transaction.
+
+      For example: Transaction A reads a data item, Transaction B modifies the data item, Transaction A reads the data item again. Transaction A will get the data item that is modified by Transaction B, but not committed.
+    </details>
+20. What is write Skew?
+    <details><summary> Ans</summary>
+      Write Skew is a phenomenon that occurs when two transactions that each have to make sure conditions are met before they can commit. And both pass the condition check, but when both commit, it will make wrong result.
+
+      For example: Our customers want to buy products which are in stock 20. We have a table to store the stock of products. We have two transactions, Transaction A and Transaction B. Transaction A wants to buy 10 products, Transaction B wants to buy 5 products. Both transactions check the stock of products, and both pass the check. But when both commit, the stock of products will be minus 15, which is wrong.
+    </details>
+
+21. Race condition
     <details><summary>Answer</summary>
     - Atomic update
     - Transaction lock
     - Version control
     </details>
-20. Lost Updates in Mysql, Postgres
+22. Lost Updates in Mysql, Postgres
 
 ## RDBMS
 1. Explain count(*), count(1), count(column_name) in SQL?
@@ -147,7 +176,6 @@
 7. How to prevent same position be bought by two or more users at the same time?
 8. How database process a command?
 9. What could happen if multiple users create transactions at the same time?
-10. What kind of isolation level do you know?
 11. What is MVCC?
 12. What is buffer pool?
 13. Describe the different of `drop` `delete` `truncate`?
@@ -167,7 +195,6 @@
     - Characteristics: Primary key, Unique key, Non-unique key, Full-text index, Spatial index
   
     Most usually to see are B+Tree, Hash, Full-Text. 
-    
     </details>
 4. When to create `index`? When not to use?
     <details><summary>Answer</summary>
