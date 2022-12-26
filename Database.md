@@ -158,29 +158,109 @@
     - Version control
     </details>
 22. Lost Updates in Mysql, Postgres
+    <details><summary>Answer</summary>
+    Two transactions update the same row, the last transaction will overwrite the first transaction's update.
+    </details>
+23. When many people want to buy a commodity and the stock is only one, how to solve this problem?
+    <details><summary>Answer</summary>
+    - Use serializable isolation level
+    </details>
+24. What is optimistic lock?
+    <details><summary>Answer</summary>
+    Optimistic lock is a mechanism to prevent data inconsistency. When accessing data, it will not lock. So other transaction can access the data. But when commit, it will check if the data is changed. If the data is changed, it will throw an exception.
+
+    - The data I/O is more then pessimistic lock, but the lock time is less.
+    - It is more suitable for less resource competition.
+    </details>
+25. What is pessimistic lock?
+    <details><summary>Answer</summary>
+    Pessimistic lock is a mechanism to prevent data inconsistency. It is used to prevent other transaction from accessing the data that is being accessed by the current transaction.
+
+    - The data I/O is less then optimistic lock, but the lock time is more.
+    - It is more suitable for more resource competition.
+    </details>
 
 ## RDBMS
 1. Explain count(*), count(1), count(column_name) in SQL?
+    <details><summary> Ans</summary>
+      - count(*) will count all rows, including null.
+      - count(1) will count all rows, including null.
+      - count(column_name) will count all rows that column_name is not null.
+    </details>
 2. How to improve count(*)?
+    <details><summary> Ans</summary>
+      - Add non-clustered index.
+    </details>
 3. Why MySQL use B+ tree?
     <details><summary>Answer</summary>
     B+Tree only store data in leaf node, B-Tree store data in all node. So there is less data in B+Tree, so it is faster to find data cuz less IO read.
 
-    The time complexity of B+Tree is O(log`d`n), d is the number of children of a node, n is the number of data in the tree. In actual situation d is larger than 100, so even data rows comes to 10million, the height of the tree is only 3.
+    The time complexity of B+Tree is O(log`d`n), d is the number of children of a node, n is the number of data in the tree. In actual situation d is larger than 100, so even data rows comes to 10 millions, the height of the tree is only 3.
 
     Compare with hash table, the time complexity of hash table is O(1), but the hash table is not sorted, so it is not suitable for range query.
     </details>
 4. What is B tree and B+ tree?
-5. 如果user可以 follow的人/訂閱的topic/favorite的商品數, 是無上限/1萬筆以上的時候, db schema會怎麼設計?
-6. 怎麼維持不同table之間的data consistency
-7. How to prevent same position be bought by two or more users at the same time?
-8. How database process a command?
-9. What could happen if multiple users create transactions at the same time?
-11. What is MVCC?
-12. What is buffer pool?
-13. Describe the different of `drop` `delete` `truncate`?
-14. Primary key vs Unique key, what is the difference? which one is faster?
-15. for update lock
+    <details><summary>Answer</summary>
+    B tree is a self-balancing tree data structure that keeps data sorted and allows searches, sequential access, insertions, and deletions in logarithmic time. The B-tree is a generalization of a binary search tree in that a node can have more than two children. Unlike self-balancing binary search trees, the B-tree is optimized for systems that read and write large blocks of data. It is commonly used in databases and file-systems.
+
+    B+ tree is a B tree with an additional level at the bottom with linked leaves. It is used to store data in a database or file system. It is a B tree with the following properties:
+    - All leaves are on the same level.
+    - Every non-leaf node has a pointer to the leftmost leaf node.
+    - Only the leaf nodes contain data.
+    </details>
+5. if users can follow/subscribe topics/favorite commodities, is unlimited / larger than 10 thousands rows, how to design data schema?
+    <details><summary>Answer</summary>
+    The interviewer want to know is the relation between user and topic/commodity is one-to-one or one-to-many. If it is one-to-one, we can use one table to store the relation. If it is one-to-many, we can use two tables to store the relation. If the relation is one-to-many, we can use one table to store the relation, and use a column to store the number of relation.
+
+    And you will use RDBMS or NoSQL?
+    </details>
+   
+6. How to keep the data consistency in distributed system?
+    <details><summary>Answer</summary>
+    - Use transaction
+    - Use isolation lock, which one is better? why?
+    </details>
+7. How database process a command?
+    <details><summary>Answer</summary>
+    There are two layers of DB, the first is server layer. The second is storage engine layer. The server layer is responsible for parsing SQL, generating execution plan, and executing SQL. The storage engine layer is responsible for storing data and index.
+    - Parse SQL
+    - Generate execution plan
+    - Execute SQL
+    - Return result
+    </details>
+8.  What could happen if multiple users create transactions at the same time?
+    <details><summary>Answer</summary>
+    First, all these users access the same data? Second, what are there transactions doing?
+    - If all these users access the same data, and all these transactions are read-only, then there is no problem.
+    - If all these users access the same data, and all these transactions are write, then there is a problem. The data will be inconsistent. And we need to use isolation lock to solve this problem.
+    </details>
+9.  What is MVCC?
+    <details><summary>Answer</summary>
+    Multi-Version Concurrency Control (MVCC) is a method of concurrency control in which multiple versions of a record can coexist in the database. It is used to solve the problem of dirty read and non-repeatable read. It is used in InnoDB and Postgres.
+
+    It provide a snapshot of the data at a particular time. So the data is consistent. When updated a row of data, it will mark the old row is obsolete, and add a new row with new version. There will be many versions of the same row of data. But only the latest version is visible to the user.
+    </details>
+10. What is buffer pool?
+    <details><summary>Answer</summary>
+    Buffer pool is a memory area used to cache data. It is used to improve the performance of database. When a query is executed, the data will be read from buffer pool. If the data is not in buffer pool, it will be read from disk. And the data will be put into buffer pool. So the next time the data is read, it will be read from buffer pool. So it is faster.
+    </details>
+11. Describe the different of `drop`, `delete`, `truncate`?
+    <details><summary>Answer</summary>
+
+        - `drop` will delete the table and the data. It is a DDL command. It will lock the table. It will not release the space of the table.
+
+        - `delete` will delete the data. It is a DML command. It will not lock the table but lock row each execute. It will delete the data row by row and record it. So it is slow.
+        
+        - `truncate` will delete the data in table. It is a DDL command. It will lock the table. It is faster than `delete` cuz it will not record the deleted data.
+    </details>
+
+12. Primary key vs Unique key, what is the difference? which one is faster?
+    <details><summary>Answer</summary>
+    - Primary key is a unique key, but not allow null.
+    - Primary key is faster than unique key.
+    - Only one primary key in a table.
+    - Both should have same performance.
+    </details>
 
 ### Index
 1. What do you understand by Index hunting?
