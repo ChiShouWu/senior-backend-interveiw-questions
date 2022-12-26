@@ -263,7 +263,10 @@
     </details>
 
 ### Index
-1. What do you understand by Index hunting?
+1. What do you understand by `Index hunting`?
+    <details><summary>Answer</summary>
+    Index hunting is the process of boosting the collection of indexes which help in improving the query performance as well as the speed of the database.
+    </details>
 2. What is `index` in database? And how it works?
     <details><summary>Answer</summary>
     Index is a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space to maintain the index data structure. Indexes can be created using one or more columns, or expressions. 
@@ -318,16 +321,15 @@
 8. Is that speed up the query if we add more index on a table?
     <details><summary>Answer</summary>
     When we read data with index, it will faster. But if we write data, it will slower. Because we need to update the index.
- 
+    </details>
 
 ## NoSql
-1. 你的MongoDB怎麼做text search？
-2. MongoDB每個document有32MB上限，如果你的文章超過32MB要怎麼辦？
+1. How MongoDB execute text search？
+2. MongoDB document have 32MB limit, if your article larger then that, what would you do？
 3. What is eventual consistency?
-
-5. [What are virtual property in mongoose?
+4. [What are virtual property in mongoose?
 ](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-are-virtual-property-in-mongoose)
-6. [What is Datamasking?](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-is-datamasking)
+1. [What is Datamasking?](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-is-datamasking)
 
 
 ## Reference
