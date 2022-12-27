@@ -325,11 +325,26 @@
 
 ## NoSql
 1. How MongoDB execute text search？
+    <details><summary>Answer</summary>
+    MongoDB uses a text index to store the text search data. When you execute a text search, it will use the text index to search the data.
+    </details>
 2. MongoDB document have 32MB limit, if your article larger then that, what would you do？
+    <details><summary>Answer</summary>
+    Actually it is 16mb now.
+    You can split the article into multiple documents. And use a reference to link them.
+    Or use GridFS to store the article.
+    </details>
 3. What is eventual consistency?
-4. [What are virtual property in mongoose?
-](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-are-virtual-property-in-mongoose)
-1. [What is Datamasking?](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-is-datamasking)
-
+    <details><summary>Answer</summary>
+    Eventual consistency is a consistency model in which all replicas will eventually show the same data. It is a consistency model that is weaker than strong consistency. It is used in distributed systems and will enhance the system availability and performance.
+    </details>
+4. [What are virtual property in mongoose?](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-are-virtual-property-in-mongoose)
+   <details><summary>Answer</summary>
+   A virtual property is not persisted to the database. We can add it to our schema as a helper to get and set values.but it wont store in database
+   </details>
+5. [What is Datamasking?](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-is-datamasking)
+  <details><summary>Answer</summary>
+  It protects the sensitive data from unauthorized access. It is a technique to hide the sensitive data from the user. 
+  </details>
 
 ## Reference
