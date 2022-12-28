@@ -22,9 +22,9 @@
 
 7. [What are disadvantages of using session based authentication?](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-are-disadvantages-of-using-session-based-authentication)
 
-8. [What are different authentication methods?](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-are-disadvantages-of-using-session-based-authentication
+8. [What are different authentication methods?](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-are-disadvantages-of-using-session-based-authentication)
 
-9.  Man-in-the-middle attack
+9.  Man-in-the-middle attack? Hot to prevent it?
     <details>
     <summary>Answer</summary>
     The attacker spy on the transport of communication. Insert a layer into the line and exchange the data of 2 sides. Thus, the attacker can fabricate the data and send to the other side.

@@ -273,17 +273,20 @@
     </details>
 3. What kind of index do you know?
     <details><summary>Answer</summary>
-    - Data structure :B-tree, Hash, R-tree, Bitmap, Full-text, Spatial
-    - Physical storage: Clustered Index, Non-clustered Index, secondary index
-    - Characteristics: Primary key, Unique key, Non-unique key, Full-text index, Spatial index
+       - Data structure :B-tree, Hash, R-tree, Bitmap, Full-text, Spatial
+       - Physical storage: Clustered Index, Non-clustered Index, secondary index
+       - Characteristics: Primary key, Unique key, Non-unique key, Full-text index, Spatial index
   
     Most usually to see are B+Tree, Hash, Full-Text. 
     </details>
 4. When to create `index`? When not to use?
     <details><summary>Answer</summary>
     Database will create index defaultly when you create a table. But you can also create index by yourself.
+
     - If there is primary key, database will create a clustered index on it.
+
     - If not, database will create a clustered index on non-null and unique column.
+    
     - Last, InnoDB will create a clustered index on explicit id row automatically.
 
     - Disadvantage:
@@ -308,7 +311,9 @@
     </details>
 6. Differentiate between ‘Cluster’ and ‘Non-cluster’ index.
     <details><summary>Answer</summary>
+    
     - Cluster index store real data in the index.
+  
     - Non-cluster index store the pointer of data, need to find the data by primary key.
     </details>
 7. How to prevent index failure?
@@ -343,8 +348,8 @@
    A virtual property is not persisted to the database. We can add it to our schema as a helper to get and set values.but it wont store in database
    </details>
 5. [What is Datamasking?](https://github.com/Gauthamjm007/Backend-NodeJS-Golang-Interview_QA#what-is-datamasking)
-  <details><summary>Answer</summary>
-  It protects the sensitive data from unauthorized access. It is a technique to hide the sensitive data from the user. 
-  </details>
+    <details><summary>Answer</summary>
+    It protects the sensitive data from unauthorized access. It is a technique to hide the sensitive data from the user. 
+    </details>
 
 ## Reference
