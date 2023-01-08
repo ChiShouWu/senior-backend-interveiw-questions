@@ -61,12 +61,63 @@
     - 4 way wavehand: The client sends a FIN packet to the server, and the client enters the FIN_WAIT_1 state. The server receives the FIN packet and sends an ACK packet to the client, and the server enters the CLOSE_WAIT state. The client receives the ACK packet and enters the FIN_WAIT_2 state. The server sends a FIN packet to the client, and the server enters the LAST_ACK state. The client receives the FIN packet and sends an ACK packet to the server, and the client enters the TIME_WAIT state. The server receives the ACK packet and enters the CLOSED state. The client waits for 2MSL and enters the CLOSED state.
       <details>
 10. TCP v.s. UDP
+    <details><summary>Answer</summary>
+    TCP will check if the data is received correctly, and UDP will not. UDP is faster than TCP. TCP can used when want data reliable, like email, file transfer,
+     UDP can used when want data fast, like streaming, online game
+
 11. How TCP implement flow control?
     <details><summary>Answer</summary>
-    
+
 12. HTTP v.s. HTTPS
-13. HTTPS 加密過程
+    <details><summary>Answer</summary>
+    - HTTP: HyperText Transfer Protocol, HTTP is a protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical client-server model, with a client opening a connection to make a request, then waiting until it receives a response. HTTP is a stateless protocol, meaning that the server does not keep any data (state) between two requests. Each request is treated as an independent transaction. HTTP is a text-based protocol in which requests and responses consist of text. The text-based nature of HTTP makes it easy to use in debugging and logging, as well as for testing and automation.
+
+    - HTTPS: HTTP over TLS/SSL, HTTPS is the secure version of HTTP. HTTPS is HTTP over TLS/SSL. HTTPS is often used to protect highly confidential online transactions like online banking and online shopping orders. HTTPS is also used to protect communication between web servers and web browsers, including communication of sensitive data, such as passwords and credit card numbers. HTTPS uses the same TCP port as HTTP, which is port 80. The application protocol used by HTTPS is HTTP. HTTPS is the secure version of HTTP. HTTPS is HTTP over TLS/SSL. HTTPS is often used to protect highly confidential online transactions like online banking and online shopping orders. HTTPS is also used to protect communication between web servers and web browsers, including communication of sensitive data, such as passwords and credit card numbers. HTTPS uses the same TCP port as HTTP, which is port 80. The application protocol used by HTTPS is HTTP.
+    <details>
+
+13. Describe the process of https encryption
+    <details><summary>Answer</summary>
+    - The client sends a ClientHello message to the server, which includes the version of the SSL/TLS protocol that the client supports, a client-generated random value, and the client's list of supported cipher suites.
+
+    - The server responds with a ServerHello message, which includes the version of the SSL/TLS protocol that the server supports, a server-generated random value, and the server's selected cipher suite.
+
+    - The server sends its certificate to the client. The certificate contains the server's public key.
+
+    - The server sends a ServerHelloDone message to the client, which indicates that the server is done with its part of the handshake.
+
+    - The client verifies the server's certificate. If the certificate is not valid, the client will terminate the connection.
+
+    - The client sends a ClientKeyExchange message to the server. The message contains the client's premaster secret, which is encrypted using the server's public key.
+
+    - The client sends a ChangeCipherSpec message to the server. This message notifies the server that subsequent messages will be protected using the session keys.
+
+    - The client sends a Finished message to the server. This message is used to verify that the key exchange and authentication processes were successful.
+
+    - The server sends a ChangeCipherSpec message to the client.
+
+    - The server sends a Finished message to the client.
+    <details>
+
+
 14. HTTP v.s. HTTP2 v.s. HTTP3
+    <details><summary>Answer</summary>
+    - HTTP: HyperText Transfer Protocol, HTTP is a protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. HTTP follows a classical client-server model, with a client opening a connection to make a request, then waiting until it receives a response. HTTP is a stateless protocol, meaning that the server does not keep any data (state) between two requests. Each request is treated as an independent transaction. HTTP is a text-based protocol in which requests and responses consist of text. The text-based nature of HTTP makes it easy to use in debugging and logging, as well as for testing and automation.
+
+    - HTTP2: HTTP/2 is a major revision of the HTTP network protocol used by the World Wide Web. It was developed by the HTTP Working Group of the Internet Engineering Task Force (IETF) to improve web page performance over HTTP. HTTP/2 allows multiplexing of requests over a single TCP connection, which enables more efficient use of the network. It also allows servers to push content to the client without the client having to request it, which can reduce latency. HTTP/2 is specified in RFC 7540, published in May 2015.
+
+    - HTTP3: HTTP/3 is the third major version of the Hypertext Transfer Protocol (HTTP) used by the World Wide Web. HTTP/3 is a binary protocol that uses the QUIC transport protocol, which is based on the Internet Engineering Task Force (IETF) Transport Layer Security (TLS) protocol. HTTP/3 is the successor to HTTP/2, which was based on the Transport Layer Security (TLS) protocol. HTTP/3 is currently in draft stage, and is expected to be finalized in 2020.
+    It use UDP instead of TCP, so it is faster than HTTP2.
+    <details>
+
+
 15. What is socket?
+    <details><summary>Answer</summary>
+    A socket is an endpoint for communication between two machines. A socket is bound to a port number so that the TCP layer can identify the application that data is destined to be sent to. An endpoint is a combination of an IP address and a port number. A socket is bound to a port number so that the TCP layer can identify the application that data is destined to be sent to. An endpoint is a combination of an IP address and a port number.
+    <details>
 16. What it 2MSL in TCP?
-17. Header usually used in HTTP request
+    <details><summary>Answer</summary>
+    2MSL is the maximum segment lifetime. It is the maximum time a segment is allowed to exist in the network. When a endpoint of TCP connection close and send last ACK to the other endpoint, the other endpoint will wait for 2MSL and then close the connection. If the other endpoint does not receive the ACK, it will retransmit the FIN packet. If the other endpoint receives the ACK, it will close the connection.
+    <details>
+
+17. What headers usually used in HTTP request
+    - 
