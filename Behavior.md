@@ -44,11 +44,9 @@
 7.  Describe your best project. What made it successful? Were there any challenges?
 8.  What is the largest web application you have ever worked on? - and what coding were you responsible for?
 9.  What problem did you solve that had a significant impact on the company?
+10. What the biggest challenge you have faced in your recently project? How did you solve it?
+    <details><summary>Answer</summary>
+    </details>
 
 
 
-
-
-```
-My co-worker delete all code because of conflict, and I have to rebase with new main branch and create a pull-request again.
-```

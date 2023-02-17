@@ -191,7 +191,7 @@
     <details><summary> Ans</summary>
       - Add non-clustered index.
     </details>
-3. Why MySQL use B+ tree?
+3. Why MySQL use B+tree?
     <details><summary>Answer</summary>
     B+Tree only store data in leaf node, B-Tree store data in all node. So there is less data in B+Tree, so it is faster to find data cuz less IO read.
 
@@ -326,6 +326,10 @@
 8. Is that speed up the query if we add more index on a table?
     <details><summary>Answer</summary>
     When we read data with index, it will faster. But if we write data, it will slower. Because we need to update the index.
+    </details>
+9. How full-text index work?
+   <details><summary>Answer</summary>
+    Full-text index is a special index that is used to search text. It is a kind of inverted index. It will store the word and the document id. When you search the word, it will return the document id. And you can get the document by the document id.
     </details>
 
 ## NoSql
