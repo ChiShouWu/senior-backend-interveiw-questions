@@ -6,6 +6,12 @@
 1K QPS for whole backend server
 請設計一個 Rate Limiter。
 ```
+<details>
+<summary>Answer</summary>
+    常見作法能使用token bucket, 設定初始bucket容量為N, 以固定速率去填充token. 每次請求則需要取得token才能請求,否則拒絕請求http 429 too many requests
+    使用go還在實驗草驗階段的time/rate來示意
+	範例程式碼: /SystemDesign/Q1%20RateLimit/
+</details>
 
 2. [Go freight](https://gocreating.lation.app/blog/interview/go-freight)
 ![go-freight](images/system-design-page-1.png)
