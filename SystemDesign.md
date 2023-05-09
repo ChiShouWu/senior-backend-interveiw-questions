@@ -51,6 +51,20 @@
     </details>
 
   1. In what situation would you choose RDBMS and where would you choose NoSQL?
+    <details>
+    <summary>Answer</summary>
+      ACID與BASE的取捨
+      1. 考慮修改的一致性容許情況
+         1. 只能強一致性, RDBMS全都保證
+         2. 允許BASE最終一致, 可考慮NoSQL
+      2. 應用程式能作到only append record, don't modify past record
+         1. 那具備horizontal scaling 和 high throughput優勢的NoSQL自然是最能體驗優勢的
+      CAP的考量
+      1. RDBMS必然具備C一致性的優勢, NoSQL都是以BASE為主
+      2. RDBMS可以透過主主互備,主從架構, 叢集架構來確保A可用性; NoSQL則是有多分Replica sets來確保可用性
+      3. RDBMS基本不會特別在P網路分區容錯上做努力, 這種情況發生只能靠手動恢復; NoSQL能用像RAFT等機制來確保
+      RAFT簡單參考 https://ithelp.ithome.com.tw/articles/10239673
+    </details>
   2. In what cases is a microservices architecture better than a monolithic one?
      <details><summary>Answer</summary>
         A monolithic application is constructed as a cohesive entity, whereas a microservices architecture comprises smaller, individually deployable services.
