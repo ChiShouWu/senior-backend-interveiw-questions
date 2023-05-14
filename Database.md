@@ -157,9 +157,10 @@
     - Transaction lock
     - Version control
     </details>
-22. Lost Updates in Mysql, Postgres
+22. What is Lost Updates in Mysql, Postgres, how to prevent it?
     <details><summary>Answer</summary>
-    Two transactions update the same row, the last transaction will overwrite the first transaction's update.
+    - It is a phenomenon that two transactions update the same data, and the last transaction will overwrite the first transaction's update.
+    - Use serializable isolation level or repeatable read isolation level
     </details>
 23. When many people want to buy a commodity and the stock is only one, how to solve this problem?
     <details><summary>Answer</summary>
@@ -261,6 +262,13 @@
     - Only one primary key in a table.
     - Both should have same performance.
     </details>
+
+13. Master-slave consistency, how to solve it?
+    <details><summary>Answer</summary>
+    - semi-sync
+    - 
+    </detail>
+
 
 ### Index
 1. What do you understand by `Index hunting`?

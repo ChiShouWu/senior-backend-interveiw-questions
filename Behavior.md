@@ -46,7 +46,13 @@
 9.  What problem did you solve that had a significant impact on the company?
 10. What the biggest challenge you have faced in your recently project? How did you solve it?
     <details><summary>Answer</summary>
+    We are building a remittance service with two 3-party API services. So we need to make sure the transaction can be record correctly and be monitored.
+    The challenge is how to make sure the transaction is successful, and only charge user once. And notify the receiver the result.
+    The first stage it charge from user. We use an idempotency key from client side then store into DB check it every time to prevent duplicate charge. Once we got the callback from the 3-party API service, we update the transaction status and init remittance by another API service. But this callback could be triggered multiple times, so we need to make sure the transaction is not updated twice. We use idempotency key again. Also, the API is not reliable, it is unpredictable. We must set if failed if overtime. So we give this key a short time to live. Once subscribers get the message. We will check the result store in our database. If it is failed, should notice user and admin.
     </details>
-
+11. Kafka usage
+    <details><summary>Answer</summary>
+    Since our system is asyc, we use kafka to handle transaction to our 3-party API services. We use kafka to store the transaction and send it to the 3-party API services. Once we got the callback, we update the transaction status and send the message to the subscribers.
+    </details>
 
 

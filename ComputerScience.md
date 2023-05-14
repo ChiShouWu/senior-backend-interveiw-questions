@@ -8,7 +8,6 @@
     - Thread: A thread is the entity within a process that can be scheduled for execution. It contains the thread's context, a set of registers, the thread stack, and a thread environment block.
 
     - Worker: A worker is a thread that is managed by a thread pool. It is a thread that is waiting for a task to be assigned to it.
-
 2. What is `Polymorphism` (dynamic binding, static binding, late binding, early binding)
     <details><summary>Answer</summary>
 
@@ -124,3 +123,8 @@
     
     - OOP: Object-oriented programming is a programming paradigm based on the concept of "objects", which can contain data, in the form of fields, often known as attributes; and code, in the form of procedures, often known as methods. A feature of objects is that an object's procedures can access and often modify the data fields of the object with which they are associated (objects have a notion of "this" or "self"). In OOP, computer programs are designed by making them out of objects that interact with one another. OOP languages are diverse, but the most popular ones are class-based, meaning that objects are instances of classes, which also determine their types.
     <details>
+15. How to communicate between threads?
+    <details><summary>Answer</summary>
+
+    - Shared memory: 
+    - Message passing: 

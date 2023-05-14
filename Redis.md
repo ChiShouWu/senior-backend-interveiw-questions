@@ -81,7 +81,9 @@
 16. If main node is down, what will happen?
 17. Further, if main node is back to normal, what will happen?
 18. What is brain split?
-19. 
+19. What kinds of key sharding in redis cluster?
+    <details><summary>Answer</summary>
+     
 
 ## Reference
 - [小林redis](https://xiaolincoding.com/redis/)

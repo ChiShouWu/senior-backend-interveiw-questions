@@ -12,6 +12,10 @@
 9. Why use kafka instead of rabbitmq?
 10. How kafka work?
 11. What are the problems if use MQ?
+12. How to keep idempotent in MQ when setting is at least once?
+    <details><answer>
+    
+13. Why exact once is slower than at least once?
 
 
 ## Reference
